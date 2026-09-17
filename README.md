@@ -187,15 +187,6 @@ Frontend setup steps:
 
 Good luck with your studies and project deployment.
 
-**— DigitalWitch**
-
-
-Please Clone the Code for the FullStack app
-1) Frontend 
-https://github.com/digitalwitchdemo/netflix_frontend.git
-
-2) Backend
-https://github.com/digitalwitchdemo/netflix_backend.git
 
 make sure you deploy the database before starting the backend.
 
