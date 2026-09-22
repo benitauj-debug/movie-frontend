@@ -12,6 +12,9 @@ RUN npm install
 
 # Copy the rest of the application
 COPY . .
+# API URL is passed in at build time and baked into the React bundle
+ARG REACT_APP_API_URL
+ENV REACT_APP_API_URL=$REACT_APP_API_URL
 
 # Build the React app for production
 RUN npm run build
