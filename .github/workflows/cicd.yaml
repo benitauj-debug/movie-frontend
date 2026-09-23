@@ -31,3 +31,34 @@ jobs:
 
       - name: Build application
         run: npm run build
+      
+  push:
+    name: Build and push image to ECR
+    needs: build
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure AWS credentials (OIDC)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: us-east-1
+
+      - name: Log in to Amazon ECR
+        id: ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Build and push Docker image
+        env:
+          IMAGE: ${{ steps.ecr.outputs.registry }}/${{ vars.ECR_REPOSITORY }}
+        run: |
+          docker build \
+            --build-arg REACT_APP_API_URL=${{ vars.REACT_APP_API_URL }} \
+            -t $IMAGE:${{ github.sha }} \
+            -t $IMAGE:latest .
+          docker push $IMAGE --all-tags
