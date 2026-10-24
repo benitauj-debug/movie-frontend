@@ -1,6 +1,6 @@
 # 🎬 Netflix Frontend
 
-**By DigitalWitch | Cloud • DevOps • Security**
+**By Benita Oswald | Cloud • DevOps • Security**
 
 ---
 
@@ -182,10 +182,6 @@ Frontend setup steps:
 5. Run `npm start`
 
 ---
-
-## 🎓 Final Words
-
-Good luck with your studies and project deployment.
 
 
 make sure you deploy the database before starting the backend.
